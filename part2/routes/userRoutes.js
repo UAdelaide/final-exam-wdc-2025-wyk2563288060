@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
 });
 
 // New /api/users/me interface
-router.get('/me', (req, res) => {
+router.get('/api/users/me', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
   }
