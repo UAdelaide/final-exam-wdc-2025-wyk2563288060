@@ -74,7 +74,7 @@
         }
 
         async function applyToWalk(requestId) {
-          // 
+          // Add: Use getCurrentUser() to get walker_id
           const user = await getCurrentUser();
           if (!user || user.role !== 'walker') {
             error.value = 'Only walkers can apply';
