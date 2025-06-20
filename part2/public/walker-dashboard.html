@@ -51,7 +51,18 @@
         const user = 3;
 
         // Add: Get the current logged-in user
-        
+        async function getCurrentUser() {
+          try {
+    const res = await fetch('/api/users/me');
+    if (!res.ok) throw new Error('Not logged in');
+    const user = await res.json();
+    return user;
+  } catch (err) {
+    console.error('Failed to get current user:', err);
+    return null;
+  }
+}
+
 
         async function loadWalkRequests() {
           try {
