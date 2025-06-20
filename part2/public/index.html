@@ -43,19 +43,19 @@
   </div>
 
   <script>
-  const { createApp, ref, onMounted } = Vue;
+    const { createApp, ref, onMounted } = Vue;
 
-  createApp({
-    setup() {
-      const message = ref('Welcome to the Dog Walking Service!');
-      const dogs = ref([]);
-      const loading = ref(true);
+    createApp({
+      setup() {
+        const message = ref('Welcome to the Dog Walking Service!');
+        const dogs = ref([]);
+        const loading = ref(true);
 
-      async function loadDogsWithPhotos() {
-        try {
-          const res = await fetch('/api/dogs');
-          const dogList = await res.json();
-
+        async function loadDogsWithPhotos() {
+          try {
+            const res = await fetch('/api/dogs');
+            const dogList = await res.json();
+         
           const dogListWithPhotos = await Promise.all(
             dogList.map(async dog => {
               try {
