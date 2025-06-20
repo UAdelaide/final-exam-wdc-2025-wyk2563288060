@@ -20,7 +20,7 @@ app.use(session({
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
 
-app.use('/', walkRoutes);
+app.use('/api', walkRoutes);
 app.use('/', userRoutes);
 
 // Export the app instead of listening here
