@@ -55,17 +55,17 @@
           try {
             const res = await fetch('/api/dogs');
             const dogList = await res.json();
-         
-          const dogListWithPhotos = await Promise.all(
-            dogList.map(async dog => {
-              try {
-                const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
-                const imgData = await imgRes.json();
-                dog.photo = imgData.message;
-              } catch {
-                dog.photo = 'https://via.placeholder.com/300x200?text=Dog+Photo';
-              }
-              return dog;
+
+            const dogListWithPhotos = await Promise.all(
+              dogList.map(async dog => {
+                try {
+                  const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
+                  const imgData = await imgRes.json();
+                  dog.photo = imgData.message;
+                } catch {
+                  dog.photo = 'https://via.placeholder.com/300x200?text=Dog+Photo';
+             }
+                return dog;
             })
           );
 
