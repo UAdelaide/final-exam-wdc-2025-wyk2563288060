@@ -49,8 +49,8 @@ router.post('/login', async (req, res) => {
     if (rows.length === 1) {
       // Save user information in session
       req.session.user = rows[0];
-      
 
+      // Jump to different dashboard pages according to the role
       const role = rows[0].role;
       if (role === 'owner') {
         res.redirect('/owner-dashboard.html');
