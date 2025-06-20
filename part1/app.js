@@ -6,7 +6,6 @@ const PORT = 8080;
 
 app.use(express.json());
 
-// MySQL connection pool
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -67,7 +66,6 @@ app.get('/api/walkers/summary', async (req, res) => {
   }
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
