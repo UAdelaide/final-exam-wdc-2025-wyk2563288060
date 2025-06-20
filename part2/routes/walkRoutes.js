@@ -59,7 +59,7 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
-// 
+// Add
 router.get('/dogs', async (req, res) => {
   try {
     const [rows] = await pool.query(`
