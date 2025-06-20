@@ -102,13 +102,12 @@
 
         async function loadDogs() {
           try {
-    const res = await fetch('/api/owner/dogs');
-    dogs.value = await res.json();
-  } catch (err) {
-    console.error('Failed to load dogs', err);
-  }
-}
-
+            const res = await fetch('/api/owner/dogs');
+            dogs.value = await res.json();
+          } catch (err) {
+            console.error('Failed to load dogs', err);
+          }
+        }
 
         async function submitWalkRequest() {
           try {
