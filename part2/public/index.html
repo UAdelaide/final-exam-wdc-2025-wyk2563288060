@@ -24,6 +24,23 @@
       </div>
       <button type="submit" class="btn btn-primary">Log In</button>
     </form>
+        <h2 class="mt-5">🐶 Meet the Dogs</h2>
+    <div v-if="loading">Loading dogs...</div>
+    <div v-else class="row">
+      <div class="col-md-4 mb-4" v-for="dog in dogs" :key="dog.dog_name + dog.owner_username">
+        <div class="card h-100">
+          <img :src="dog.photo" class="card-img-top" alt="Dog photo">
+          <div class="card-body">
+            <h5 class="card-title">{{ dog.dog_name }}</h5>
+            <p class="card-text">
+              <strong>Size:</strong> {{ dog.size }}<br>
+              <strong>Owner:</strong> {{ dog.owner_username }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
