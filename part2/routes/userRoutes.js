@@ -80,4 +80,29 @@ router.get('/logout', (req, res) => {
   });
 });
 
+// GET /api/owner/dogs
+// Return the list of dogs belonging to the currently logged-in owner
+router.get('/api/owner/dogs', async (req, res) => {
+  const user = req.session.user; // Get the logged-in user from session
+
+  if (!user || user.role !== 'owner') {
+    // Only logged-in owners can access this endpoint
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  try {
+    // Query the database for the owner's dogs
+    const [rows] = await db.query(
+      'SELECT dog_id, name FROM Dogs WHERE owner_id = ?',
+      [user.user_id]
+    );
+
+    res.json(rows); // Return the list of dogs
+  } catch (error) {
+    console.error('Error fetching dogs:', error);
+    res.status(500).json({ error: 'Failed to load dogs' });
+  }
+});
+
+
 module.exports = router;
