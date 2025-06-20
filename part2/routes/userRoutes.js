@@ -56,6 +56,7 @@ router.post('/login', async (req, res) => {
       } else {
         res.send('Unknown role');
       }
+    }
     if (rows.length === 0) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
