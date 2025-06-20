@@ -13,8 +13,18 @@
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
 
-    <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
-    <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
+    <form action="/login" method="POST" class="mt-4">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input name="username" id="username" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" id="password" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Log In</button>
+</form>
+
   </div>
 
   <script>
