@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Express</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+  <meta charset="UTF-8">
+  <title>Dog of the Day</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, yellow, pink, cyan);
+      font-family: Comic Sans MS, cursive, sans-serif;
+      font-size: 22px;
+      text-align: center;
+      animation: flash 0.5s infinite alternate;
+    }
 
+    @keyframes flash {
+      from { background-color: yellow; }
+      to { background-color: orange; }
+    }
+
+    img {
+      width: 90%;
+      border: 10px dotted red;
+      filter: blur(2px);
+    }
+
+    button {
+      font-size: 30px;
+      padding: 20px;
+      background-color: hotpink;
+    }
+  </style>
+</head>
 <body>
-    <h1>Express</h1>
-    <p>Welcome to Express</p>
+  <div id="app">
+    <h1>DOG OF THE DAY!! 🐶🐾 (if you can find it)</h1>
+    <img :src="dogImage" alt="">
+    <br><br>
+    <button @click="fetchDog">Click me... if you dare</button>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          dogImage: ''
+        }
+      },
+      mounted() {
+        this.fetchDog();
+      },
+      methods: {
+        async fetchDog() {
+          const response = await fetch('https://dog.ceo/api/breeds/image/random');
+          const data = await response.json();
+          this.dogImage = data.message;
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
