@@ -36,7 +36,7 @@ router.get('/me', (req, res) => {
 });
 
 // POST login (dummy version)
-//
+// Verify the user name and password, and jump according to the role
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
