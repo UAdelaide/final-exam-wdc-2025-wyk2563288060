@@ -57,7 +57,7 @@ router.post('/login', async (req, res) => {
       } else if (role === 'walker') {
         res.redirect('/walker-dashboard.html');
       } else {
-        res.send('Unknown role');
+        res.send('Unknown role'); // Handling that does not conform to the role
       }
     } else {
       res.send('Invalid username or password');
