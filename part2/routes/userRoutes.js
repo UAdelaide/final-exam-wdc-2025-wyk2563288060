@@ -37,13 +37,13 @@ router.get('/me', (req, res) => {
 
 // POST login (dummy version)
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    const [rows] = await db.query(`
-      SELECT user_id, username, role FROM Users
-      WHERE email = ? AND password_hash = ?
-    `, [email, password]);
+    const [rows] = await db.query(
+      'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
+      [username, password] // 使用用户输入的用户名和密码进行匹配
+    );
 
     if (rows.length === 1) {
       req.session.user = rows[0];
@@ -54,15 +54,17 @@ router.post('/login', async (req, res) => {
       } else if (role === 'walker') {
         res.redirect('/walker-dashboard.html');
       } else {
-        res.send('Unknown role');
+        res.send('Unknown role'); // 不符合角色的处理
       }
-    }else {
-      res.send('Invalid username or password');
+    } else {
+      res.send('Invalid username or password'); // 登录失败处理
     }
+
   } catch (error) {
     console.error(error);
-    res.status(500).send('Login failed');
+    res.status(500).send('Login failed'); // 服务器错误处理
   }
 });
+
 
 module.exports = router;
