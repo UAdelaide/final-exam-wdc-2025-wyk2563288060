@@ -43,15 +43,53 @@
   </div>
 
   <script>
-    const { createApp } = Vue;
-    createApp({
-      data() {
-        return {
-          message: 'Welcome to the Dog Walking Service!'
-        };
+  const { createApp, ref, onMounted } = Vue;
+
+  createApp({
+    setup() {
+      const message = ref('Welcome to the Dog Walking Service!');
+      const dogs = ref([]);
+      const loading = ref(true);
+
+      async function loadDogsWithPhotos() {
+        try {
+          const res = await fetch('/api/dogs');
+          const dogList = await res.json();
+
+          const dogListWithPhotos = await Promise.all(
+            dogList.map(async dog => {
+              try {
+                const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
+                const imgData = await imgRes.json();
+                dog.photo = imgData.message;
+              } catch {
+                dog.photo = 'https://via.placeholder.com/300x200?text=Dog+Photo';
+              }
+              return dog;
+            })
+          );
+
+          dogs.value = dogListWithPhotos;
+        } catch (err) {
+          console.error('Failed to load dogs:', err);
+        } finally {
+          loading.value = false;
+        }
       }
-    }).mount('#app');
-  </script>
+
+      onMounted(() => {
+        loadDogsWithPhotos();
+      });
+
+      return {
+        message,
+        dogs,
+        loading
+      };
+    }
+  }).mount('#app');
+</script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
