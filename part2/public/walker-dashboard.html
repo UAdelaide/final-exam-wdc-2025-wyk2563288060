@@ -75,6 +75,10 @@
 
         async function applyToWalk(requestId) {
           const user = await getCurrentUser();
+          if (!user || user.role !== 'walker') {
+            error.value = 'Only walkers can apply';
+            return;
+          }
           try {
             const res = await fetch(`/api/walks/${requestId}/apply`, {
               method: 'POST',
