@@ -10,7 +10,7 @@ app.use(express.json());
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: '', // 你的密码，如果没有可以留空
+  password: '',
   database: 'DogWalkService',
   waitForConnections: true,
   connectionLimit: 10,
