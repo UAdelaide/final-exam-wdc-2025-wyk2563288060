@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
   try {
     const [rows] = await db.query(
       'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
-      [username, password] // 使用用户输入的用户名和密码进行匹配
+      [username, password]
     );
 
     if (rows.length === 1) {
@@ -54,15 +54,15 @@ router.post('/login', async (req, res) => {
       } else if (role === 'walker') {
         res.redirect('/walker-dashboard.html');
       } else {
-        res.send('Unknown role'); // 不符合角色的处理
+        res.send('Unknown role');
       }
     } else {
-      res.send('Invalid username or password'); // 登录失败处理
+      res.send('Invalid username or password');
     }
 
   } catch (error) {
     console.error(error);
-    res.status(500).send('Login failed'); // 服务器错误处理
+    res.status(500).send('Login failed');
   }
 });
 
