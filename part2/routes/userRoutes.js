@@ -60,12 +60,12 @@ router.post('/login', async (req, res) => {
         res.send('Unknown role'); // Handling that does not conform to the role
       }
     } else {
-      res.send('Invalid username or password');
+      res.send('Invalid username or password'); // Login failure processing
     }
 
   } catch (error) {
     console.error(error);
-    res.status(500).send('Login failed');
+    res.status(500).send('Login failed'); // Server error handling
   }
 });
 
