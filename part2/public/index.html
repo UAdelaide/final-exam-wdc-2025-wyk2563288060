@@ -69,14 +69,14 @@
               })
             );
 
-          dogs.value = dogListWithPhotos;
-        } catch (err) {
-          console.error('Failed to load dogs:', err);
-        } finally {
-          loading.value = false;
+            dogs.value = dogListWithPhotos;
+          } catch (err) {
+            console.error('Failed to load dogs:', err);
+          } finally {
+            loading.value = false;
+          }
         }
-      }
-
+       
       onMounted(() => {
         loadDogsWithPhotos();
       });
