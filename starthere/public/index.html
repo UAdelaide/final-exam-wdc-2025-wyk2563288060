@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Express</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Dog of the Day 🐶</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body {
+      background-color: lime;
+      font-family: Papyrus, Comic Sans MS, cursive;
+      color: yellow;
+      text-shadow: 1px 1px 2px red;
+    }
+    img {
+      border: 10px dashed purple;
+      width: 700px;
+      height: 400px;
+      animation: spin 4s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    button {
+      font-size: 30px;
+      margin: 30px;
+      background-color: orange;
+      color: white;
+      border: none;
+    }
+  </style>
 </head>
-
 <body>
-    <h1>Express</h1>
-    <p>Welcome to Express</p>
+  <div id="app">
+    <h1>Welcome to the ULTIMATE DOG EXPERIENCE 🐾</h1>
+    <p>Click the button to reveal the secret dog of the day (maybe)...</p>
+    <button @click="fetchDog">Click Me Maybe</button>
+    <img v-if="dogImage" :src="dogImage">
+    <p>{{ description }}</p>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          dogImage: '',
+          description: 'This dog has no name and no breed. But he is amazing. Probably.',
+        };
+      },
+      methods: {
+        async fetchDog() {
+          const response = await fetch('https://dog.ceo/api/breeds/image/random');
+          const data = await response.json();
+          this.dogImage = data.message;
+        }
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
