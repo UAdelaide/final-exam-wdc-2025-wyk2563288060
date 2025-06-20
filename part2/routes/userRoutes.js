@@ -47,7 +47,9 @@ router.post('/login', async (req, res) => {
     );
 
     if (rows.length === 1) {
+      // Save user information in session
       req.session.user = rows[0];
+      
 
       const role = rows[0].role;
       if (role === 'owner') {
