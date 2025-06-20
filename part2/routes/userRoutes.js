@@ -43,7 +43,7 @@ router.post('/login', async (req, res) => {
   try {
     const [rows] = await db.query(
       'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
-      [username, password]
+      [username, password] // Use the user name and password entered by the user to match
     );
 
     if (rows.length === 1) {
