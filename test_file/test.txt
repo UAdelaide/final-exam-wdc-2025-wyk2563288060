@@ -1,1 +1,2 @@
 INSERT INTO Users (username, emile, password_hash, role) VALUES
+('')
