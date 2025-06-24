@@ -1,4 +1,5 @@
 INSERT INTO Users (username, emile, password_hash, role) VALUES
 ('alice123', 'alice@example.com', 'hashed123', 'owner'),
 ('bobwalker', 'bab@example.com', 'hashed456', 'walker'),
-('carol123', 'caro@example.com', 'hashed789', 'owner)
+('carol123', 'caro@example.com', 'hashed789', 'owner'),
+('daviddog')
