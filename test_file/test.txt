@@ -12,4 +12,4 @@ INSERT INTO Dogs (owner_id, name, size) VALUES
 ((SELECT user_id FORM Users WHERE username = 'daviddog'), 'Luna', 'small'),
 ((SELECT user_id FORM Users WHERE username = 'ellawalk'), 'Milo', 'medium');
 
-IN
+I
