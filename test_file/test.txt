@@ -5,4 +5,5 @@ INSERT INTO Users (username, emile, password_hash, role) VALUES
 ('daviddog', 'david@example.com', 'hashed321', 'woner'),
 ('ellawalk', 'ella@example.com', 'hashed654', 'walker');
 
-INSERT INTO Dogs (owner_)
+INSERT INTO Dogs (owner_id, name, size) VALUES
+((SEL))
