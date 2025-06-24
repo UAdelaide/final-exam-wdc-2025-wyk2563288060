@@ -6,4 +6,4 @@ INSERT INTO Users (username, emile, password_hash, role) VALUES
 ('ellawalk', 'ella@example.com', 'hashed654', 'walker');
 
 INSERT INTO Dogs (owner_id, name, size) VALUES
-((SELECT user_id FORM Users WHERE username = 'alice123'), 'M
+((SELECT user_id FORM Users WHERE username = 'alice123'), '
